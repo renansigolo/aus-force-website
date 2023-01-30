@@ -1,4 +1,6 @@
 ---
+import "/src/styles/global.css";
+
 export interface Props {
   title: string;
 }
@@ -7,30 +9,26 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
+
   <body>
     <slot />
   </body>
 </html>
 
 <style is:global>
-  :root {
-    --accent: 251 71 61;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      #e28655 30%,
-      white 60%
-    );
-  }
   html {
-    font-family: system-ui, sans-serif;
-    background-color: #f6f6f6;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
   }
 </style>

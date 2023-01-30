@@ -1,42 +1,33 @@
 ---
+import Register from "../components/Register.astro";
 import Layout from "../layouts/Layout.astro";
+
+const title = "AUS Force";
 ---
 
-<Layout title="AUS Force">
-  <main>
+<Layout title={title}>
+  <main class="container">
     <h1>
-      Welcome to the <br /><span class="text-gradient">AUS Force Website</span>
+      Welcome to the <br /><span class="text-gradient">{title}</span>
     </h1>
 
-    <section class="coming-soon">
-      <h2>Coming Soon</h2>
-    </section>
+    <div class="register">
+      <Register />
+    </div>
   </main>
 </Layout>
 
 <style>
   main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-    height: 60vh;
+    text-align: center;
+    height: 100%;
   }
   h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-    text-align: center;
+    margin-bottom: calc(var(--typography-spacing-vertical) / 2);
   }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .coming-soon {
+
+  .register {
     display: grid;
     place-content: center;
-    height: 100%;
   }
 </style>

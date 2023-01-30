@@ -1,0 +1,44 @@
+<article>
+  <hgroup>
+    <h2>Get notified when we're launching.</h2>
+    <h3>
+      Register your email below to be one of the first ones to know when we're
+      live!
+    </h3>
+  </hgroup>
+
+  <form aria-busy="false">
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Email address"
+      required
+    />
+    <button type="submit">Submit</button>
+  </form>
+</article>
+
+<script>
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    form?.setAttribute("aria-busy", "true");
+
+    // Select the form values
+    const formData = event.currentTarget as HTMLFormElement;
+    const email = new FormData(formData).get("email");
+    console.log("🚀 ~ email", email);
+
+    // Send the data to the cloud function
+    try {
+      //   await api.post(sendMailUrl, data);
+      //   showTemplate(alertBoxContent.success);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      form.reset();
+      form?.setAttribute("aria-busy", "false");
+    }
+  });
+</script>
