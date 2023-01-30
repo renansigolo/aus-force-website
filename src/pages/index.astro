@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="AUS Force">
+  <main>
+    <h1>
+      Welcome to the <br /><span class="text-gradient">AUS Force Website</span>
+    </h1>
+
+    <section class="coming-soon">
+      <h2>Coming Soon</h2>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+    height: 60vh;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .coming-soon {
+    display: grid;
+    place-content: center;
+    height: 100%;
+  }
+</style>
