@@ -13,10 +13,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@picocss/pico": "1.5.7",
-    "astro": "2.0.2"
+    "astro": "2.0.2",
+    "@astrojs/react": "2.0.1",
+    "react-dom": "18.1.0",
+    "react": "18.1.0",
+    "@picocss/pico": "1.5.7"
   },
   "devDependencies": {
+    "@types/react-dom": "18.0.5",
+    "@types/react": "18.0.10",
     "prettier": "2.8.3",
     "prettier-plugin-astro": "0.8.0"
   },

@@ -1,5 +1,5 @@
 ---
-import Register from "../components/Register.astro";
+import Register from "../components/Register";
 import Layout from "../layouts/Layout.astro";
 
 const title = "AUS Force";
@@ -7,12 +7,10 @@ const title = "AUS Force";
 
 <Layout title={title}>
   <main class="container">
-    <h1>
-      Welcome to the <br /><span class="text-gradient">{title}</span>
-    </h1>
+    <h1>Welcome to {title}</h1>
 
     <div class="register">
-      <Register />
+      <Register client:visible />
     </div>
   </main>
 </Layout>
@@ -23,7 +21,7 @@ const title = "AUS Force";
     height: 100%;
   }
   h1 {
-    margin-bottom: calc(var(--typography-spacing-vertical) / 2);
+    margin-bottom: 0;
   }
 
   .register {
