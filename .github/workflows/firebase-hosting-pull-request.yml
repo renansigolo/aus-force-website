@@ -29,7 +29,7 @@ jobs:
         uses: "google-github-actions/get-secretmanager-secrets@v1"
         with:
           secrets: |-
-            token:aus-force/PUBLIC_API_URL
+            token:projects/295994266197/secrets/PUBLIC_API_URL
 
       - run: npm ci
 
