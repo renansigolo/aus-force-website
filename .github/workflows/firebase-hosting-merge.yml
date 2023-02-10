@@ -10,11 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      contents: "read"
+      id-token: "write"
+
       checks: write
       pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v1"
+        with:
+          credentials_json: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUS_FORCE }}"
+
+      - id: "secrets"
+        uses: "google-github-actions/get-secretmanager-secrets@v1"
+        with:
+          secrets: |-
+            token:aus-force/PUBLIC_API_URL
 
       - run: npm ci
 
@@ -24,30 +39,5 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUS_FORCE }}"
           channelId: live
           projectId: aus-force
-
-  # get_google_screts:
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: "read"
-  #     id-token: "write"
-
-  #   steps:
-  #     - uses: actions/checkout@v3
-
-  #     - id: "auth"
-  #       name: "Authenticate to Google Cloud"
-  #       uses: "google-github-actions/auth@v1"
-  #       with:
-  #         credentials_json: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_AUS_FORCE }}"
-
-  #     - id: "secrets"
-  #       uses: "google-github-actions/get-secretmanager-secrets@v1"
-  #       with:
-  #         secrets: |-
-  #           apiUrl:aus-force/PUBLIC_API_URL
-
-  #     # Example of using the output
-  #     - id: "publish"
-  #       uses: "foo/bar@main"
-  #       env:
-  #         PUBLIC_API_URL: "${{ steps.secrets.outputs.apiUrl }}"
+        env:
+          PUBLIC_API_URL: "${{ steps.secrets.outputs.token }}"
