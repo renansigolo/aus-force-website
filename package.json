@@ -1,28 +1,40 @@
 {
   "name": "aus-force-website",
+  "description": "AUS Force Website",
   "type": "module",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://aus-force.web.app",
+  "author": "Renan Sigolo <renan.sigolo@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/renansigolo/aus-force-website/issues",
+    "email": "renan.sigolo@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renansigolo/aus-force-website.git"
+  },
   "scripts": {
+    "astro": "astro",
+    "build": "astro build",
     "clean": "rm -rf package-lock.json node_modules dist",
-    "format": "prettier '**/*' --write --ignore-unknown",
     "deploy": "firebase deploy --only hosting",
     "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "format": "prettier '**/*' --write --ignore-unknown",
     "preview": "astro preview",
-    "astro": "astro"
+    "start": "astro dev"
   },
   "dependencies": {
     "@astrojs/react": "2.0.2",
+    "@astrojs/sitemap": "1.0.1",
     "@picocss/pico": "1.5.7",
     "astro": "2.0.10",
-    "react-dom": "18.2.0",
-    "react": "18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
-    "@types/react": "18.0.27",
     "prettier": "2.8.4",
     "prettier-plugin-astro": "0.8.0"
   },
