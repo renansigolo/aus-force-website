@@ -1,9 +1,11 @@
-import { defineConfig } from "astro/config";
-
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
+import * as packageJson from "./package.json";
 
-// https://astro.build/config
+const { homepage } = packageJson;
+
 export default defineConfig({
-  // Enable React to support React JSX components.
-  integrations: [react()],
+  site: homepage,
+  integrations: [react(), sitemap()],
 });
