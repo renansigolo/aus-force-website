@@ -17,7 +17,7 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
-    "clean": "rm -rf package-lock.json node_modules dist",
+    "clean": "rm -rf .firebase dist node_modules package-lock.json",
     "deploy": "firebase deploy --only hosting",
     "dev": "astro dev",
     "format": "prettier '**/*' --write --ignore-unknown",
@@ -27,16 +27,20 @@
   "dependencies": {
     "@astrojs/react": "2.0.2",
     "@astrojs/sitemap": "1.0.1",
-    "@picocss/pico": "1.5.7",
+    "@astrojs/tailwind": "3.0.1",
     "astro": "2.0.10",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.2.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.10",
     "prettier": "2.8.4",
-    "prettier-plugin-astro": "0.8.0"
+    "prettier-plugin-astro": "0.8.0",
+    "prettier-plugin-tailwindcss": "0.2.2"
   },
   "engines": {
     "node": "^16.13.0 || ^18.12.0 || >=19.0.0",

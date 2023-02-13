@@ -1,29 +1,12 @@
-/* Pico CSS */
-@import "/node_modules/@picocss/pico/css/pico.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Deep-orange Dark scheme */
-/* Enabled if forced with data-theme="dark" */
-[data-theme="dark"] {
-  --primary: #3949ab;
-  --primary-hover: #3f51b5;
-  --primary-focus: rgba(57, 73, 171, 0.25);
-  --primary-inverse: #fff;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Deep-orange (Common styles) */
-:root {
-  accent-color: var(--primary);
-  --form-element-active-border-color: var(--primary);
-  --form-element-focus-color: var(--primary-focus);
-  --switch-color: var(--primary-inverse);
-  --switch-checked-background-color: var(--primary);
-}
-
-/* Helper classes */
-.text-center {
-  text-align: center;
-}
-
-.m-0 {
-  margin: 0;
+html,
+body {
+  @apply overflow-x-hidden;
 }
