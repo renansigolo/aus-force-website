@@ -1,12 +1,7 @@
-/* This example requires Tailwind CSS v3.0+ */
+import { createSignal } from "solid-js";
 
-import { RadioGroup } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/20/solid";
-
-import { useState } from "react";
-
-/** Helper function to join classnames */
-export function classNames(...classes: string[] | any[]) {
+/** Helper function to join classs */
+export function cn(...classes: string[] | any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -74,39 +69,76 @@ const tiers = [
   },
 ];
 
+const notificationMethods = [
+  { id: "email", title: "Email" },
+  { id: "sms", title: "Phone (SMS)" },
+  { id: "push", title: "Push notification" },
+];
+
 export function Pricing() {
-  const [frequency, setFrequency] = useState(frequencies[0]);
+  const [frequency, setFrequency] = createSignal(frequencies[0]);
 
   return (
-    <div className="bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">
+    <div class="bg-white py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl text-center">
+          <h2 class="text-lg font-semibold leading-8 tracking-tight text-indigo-600">
             Pricing
           </h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             Pricing plans for teams of&nbsp;all&nbsp;sizes
           </p>
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
+        <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
           Choose an affordable plan that is packed with the best features for
           engaging your audience, creating customer loyalty, and driving sales.
         </p>
-        <div className="mt-16 flex justify-center">
-          <RadioGroup
+        <div class="mt-16 flex justify-center">
+          <div>
+            <label class="text-base font-medium text-gray-900">
+              Notifications
+            </label>
+            <p class="text-sm leading-5 text-gray-500">
+              How do you prefer to receive notifications?
+            </p>
+            <fieldset class="mt-4">
+              <legend class="sr-only">Notification method</legend>
+              <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                {notificationMethods.map((notificationMethod) => (
+                  <div class="flex items-center">
+                    <input
+                      id={notificationMethod.id}
+                      name="notification-method"
+                      type="radio"
+                      checked={notificationMethod.id === "email"}
+                      class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      for={notificationMethod.id}
+                      class="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      {notificationMethod.title}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </fieldset>
+          </div>
+
+          {/* <RadioGroup
             value={frequency}
             onChange={setFrequency}
-            className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
+            class="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
           >
-            <RadioGroup.Label className="sr-only">
+            <RadioGroup.Label class="sr-only">
               Payment frequency
             </RadioGroup.Label>
             {frequencies.map((option) => (
               <RadioGroup.Option
                 key={option.value}
                 value={option}
-                className={({ checked }) =>
-                  classNames(
+                class={({ checked }) =>
+                  classs(
                     checked ? "bg-indigo-600 text-white" : "text-gray-500",
                     "cursor-pointer rounded-full py-1 px-2.5"
                   )
@@ -115,13 +147,12 @@ export function Pricing() {
                 <span>{option.label}</span>
               </RadioGroup.Option>
             ))}
-          </RadioGroup>
+          </RadioGroup> */}
         </div>
-        <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
+        <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
           {tiers.map((tier) => (
             <div
-              key={tier.id}
-              className={classNames(
+              class={cn(
                 tier.mostPopular
                   ? "ring-2 ring-indigo-600"
                   : "ring-1 ring-gray-200",
@@ -130,28 +161,28 @@ export function Pricing() {
             >
               <h3
                 id={tier.id}
-                className={classNames(
+                class={cn(
                   tier.mostPopular ? "text-indigo-600" : "text-gray-900",
                   "text-lg font-semibold leading-8"
                 )}
               >
                 {tier.name}
               </h3>
-              <p className="mt-4 text-sm leading-6 text-gray-600">
+              <p class="mt-4 text-sm leading-6 text-gray-600">
                 {tier.description}
               </p>
-              <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight text-gray-900">
-                  {tier.price[frequency.value]}
+              <p class="mt-6 flex items-baseline gap-x-1">
+                <span class="text-4xl font-bold tracking-tight text-gray-900">
+                  {tier.price[String(frequency()?.value)]}
                 </span>
-                <span className="text-sm font-semibold leading-6 text-gray-600">
-                  {frequency.priceSuffix}
+                <span class="text-sm font-semibold leading-6 text-gray-600">
+                  {frequency()?.priceSuffix}
                 </span>
               </p>
               <a
                 href={tier.href}
                 aria-describedby={tier.id}
-                className={classNames(
+                class={cn(
                   tier.mostPopular
                     ? "bg-indigo-600 text-white shadow-sm hover:bg-indigo-500"
                     : "text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300",
@@ -162,15 +193,15 @@ export function Pricing() {
               </a>
               <ul
                 role="list"
-                className="mt-8 space-y-3 text-sm leading-6 text-gray-600"
+                class="mt-8 space-y-3 text-sm leading-6 text-gray-600"
               >
                 {tier.features.map((feature) => (
-                  <li key={feature} className="flex gap-x-3">
-                    <CheckIcon
-                      className="h-6 w-5 flex-none text-indigo-600"
+                  <li class="flex gap-x-3">
+                    {/* <CheckIcon
+                      class="h-6 w-5 flex-none text-indigo-600"
                       aria-hidden="true"
-                    />
-                    {feature}
+                    /> */}
+                    ✔️ {feature}
                   </li>
                 ))}
               </ul>
